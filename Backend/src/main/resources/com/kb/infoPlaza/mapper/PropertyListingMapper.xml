@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kb.infoPlaza.mapper.PropertyListingMapper">
+    <select id="selectAllPropertyListings" resultType="PropertyListingDTO">
+        SELECT * FROM property_listing
+    </select>
+
+    <!-- 매물동 코드 가져오기 -->
+    <select id="selectDongCodeByDongName" resultType="String">
+        SELECT dong_code FROM district_code WHERE dong_name = #{dongName}
+    </select>
+
+    <!-- 매물동 코드 기반 매물 가져오기 -->
+    <select id="selectPropertyListingByDongCode" resultType="PropertyListingDTO">
+        SELECT * FROM property_listing WHERE ldong_cd = #{dongCode}
+    </select>
+
+    <!-- 매물 번호(plno)로 매물 정보 조회 -->
+    <select id="findById" resultType="PropertyListingDTO">
+        SELECT * FROM property_listing where plno = #{id}
+    </select>
+</mapper>
